@@ -1,0 +1,8 @@
+[package]
+name = "websocket_server"
+version = "0.0.1"
+authors = ["Gary Bey <beyhy94@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+simple-websockets = "*"
