@@ -52,7 +52,7 @@ docker run -it --rm \
 
 > The default config from the rumqttd repo sets up endpoints for 2 common MQTT versions: MQTT v4.1 on port 1883, and MQTT v5 on port 1884. 
 
-With the commands ran in **Run**, you should then see something similar to below:
+Running `./target/debug/syncpubsub` in a new terminal, you should then see something similar to below:
 
 ```bash
 0. Notification = Incoming(ConnAck(ConnAck { session_present: false, code: Success }))
@@ -90,6 +90,27 @@ With the commands ran in **Run**, you should then see something similar to below
 32. Notification = Incoming(Publish(Topic = hello/9/world, Qos = AtMostOnce, Retain = false, Pkid = 0, Payload Size = 9))
 33. Notification = Outgoing(PingReq)
 34. Notification = Incoming(PingResp)
+```
+
+Running `./target/debug/asyncpubsub` in a new terminal, you should then see something similar to below:
+
+```bash
+Event = Incoming(ConnAck(ConnAck { session_present: false, code: Success }))
+Event = Outgoing(Subscribe(1))
+Event = Outgoing(Publish(2))
+Event = Incoming(SubAck(SubAck { pkid: 1, return_codes: [Success(AtMostOnce)] }))
+Event = Outgoing(PubRel(2))
+Event = Incoming(PubRec(PubRec { pkid: 2 }))
+Event = Incoming(PubComp(PubComp { pkid: 2 }))
+Event = Incoming(Publish(Topic = hello/world, Qos = AtMostOnce, Retain = false, Pkid = 0, Payload Size = 1))
+Event = Outgoing(Publish(3))
+Event = Outgoing(PubRel(3))
+...
+Event = Outgoing(Publish(11))
+Event = Outgoing(PubRel(11))
+Event = Incoming(PubRec(PubRec { pkid: 11 }))
+Event = Incoming(PubComp(PubComp { pkid: 11 }))
+Event = Incoming(Publish(Topic = hello/world, Qos = AtMostOnce, Retain = false, Pkid = 0, Payload Size = 10))
 ```
 
 To kill the MQTT Broker, run:
