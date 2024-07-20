@@ -9,3 +9,8 @@ tungstenite = "0.23.0"
 serde_json = "1.0.78"
 url = "2.2.2"
 env_logger="*"
+
+[[bin]]
+name = "websocket_client"
+path = "src/main.rs"
+
