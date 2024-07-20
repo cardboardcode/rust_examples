@@ -25,7 +25,7 @@
      // color_backtrace::install();
  
      // Set MQTT connection options
-     let mut mqttoptions = MqttOptions::new("test-1", "broker.emqx.io", 1883);
+     let mut mqttoptions = MqttOptions::new("test-1", "0.0.0.0", 1883);
      mqttoptions.set_keep_alive(Duration::from_secs(5));
  
      // Created an asynchronous MQTT client and event loop
